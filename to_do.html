@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>To-do list app</title>
+
+	<!-- CSS links -------- -->
+	<link rel="stylesheet" type="text/css" href="vendors/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="css/app_style.css">
+
+	<!-- JavaScript links -------- -->
+	<script src="vendors/jquery-3.3.1.js"></script>
+	<script src="js/the_todo.js"></script>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h1>Things to do today.</h1>
+			<p>Check off items once they have been completed.</p>
+		</header>
+		<form id="add-form">
+			<input type="text" name="" placeholder="Add an item">
+			<button><span class="fa fa-plus"></span> Add</button>
+		</form>
+	</div>
+
+	<section class="task-body">
+		<div class="container">
+			<ul id="task-heading">
+				<li>s/n</li>
+				<li>Tasks</li>
+				<li>Action</li>
+			</ul>
+		</div>
+	</section>
+
+	<form id="manage-tasks">
+		<div class="container">
+			<button class="fa fa-check"> Clear finished tasks</button>
+		</div>
+	</form>
+</body>
+</html>

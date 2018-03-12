@@ -1,0 +1,82 @@
+@import "variables";
+@import "mixins";
+
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url("../vendors/OpenSans-Regular.ttf");
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background: #fafafa;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+li{
+  list-style-type: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+header{
+  text-align: center;
+  h1{
+    font-size: 34px;
+    margin-bottom: 20px;
+  }
+  h2{
+    font-size: 18px;
+  }
+}
+
+.container{
+  width: 960px;
+  margin: 0px auto;
+  padding: 20px;
+}
+
+#add-form{
+  margin-top: 40px;
+  text-align: center;
+
+  input[type="text"]{
+    padding: 8px 10px;
+    border-radius: 4px;
+    width: 47%;
+    border: 1px solid #444;
+    background: #eee;
+  }
+
+  button{
+    @include button-style;
+    width: 10%;
+    box-shadow: none;
+    background: $checkButton;
+    border: none;
+  }
+}
+
+#task-heading{
+  border-bottom: 1px solid #000;
+  li{
+    @include task-dimension;
+    font-size: 18px;
+  }
+}
+
+#manage-tasks{
+  button{
+    @include button-style;
+    background: $checkButton;
+  }
+}
