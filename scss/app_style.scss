@@ -97,7 +97,7 @@ header{
       display: inline-block;
     }
     &:last-of-type{
-      padding: 6px; 
+      padding: 6px;
     }
   }
 }
@@ -112,6 +112,7 @@ header{
   &:first-of-type{
     @include button-style($edit);
     background: $edit;
+    margin-right: 16px;
   }
   &:last-of-type{
     @include button-style($delete);
