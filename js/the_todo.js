@@ -3,7 +3,18 @@ $(document).ready(function(){
 	var addInput = $('#add-form input');
 	var addButton = $('#add-form button');
 	var taskBody = $('.task-body div');
-	var buttonContainer = $('.task-body action')
+	var buttonContainer = $('.task-body action');
+	var clearTasks = $('.clear-tasks');
+	var manageTask = $('#manage-tasks');
+
+//function for updating serial number
+	function updateSN(taskArray, nextInd, taskLen){
+		for (var i = (nextInd - 1); i < taskLen - 1; i++) {
+			$(taskArray[i]).next().children('.serial-no').text(nextInd);
+			nextInd++;
+		}
+	}
+
 //********Event for addButton**********
 addButton.on("click", function(e){
 	e.preventDefault();
@@ -15,7 +26,7 @@ addButton.on("click", function(e){
 
 	//append child elements
 	var secondElement = "<p>" + addInput.val() + "</p>";
-	secondElement += "<input type='checkbox'>";
+	secondElement += "<input type='checkbox' class='check'>";
 	var thirdElement = "<button><span class='fa fa-edit'></span> Edit</button><button><span class='fa fa-trash'></span> Delete</button>";
 
 	$(secondLi).append(secondElement);
@@ -53,36 +64,34 @@ taskBody.on('click', function(e){
 		var tasks = $('.task');
 		var taskLength = $('.task').length;
 
-		//update serial numbers
-		for (var i = (nextIndex - 1); i < taskLength - 1; i++) {
-			$(tasks[i]).next().children('.serial-no').text(nextIndex);
-			nextIndex++;
-		}
-
-		//delete element
+		//update serial numbers and delete element
+		updateSN(tasks, nextIndex, taskLength);
 		parent.remove();
 
 	}
 
 	//Event handler for edit button
 	if (e.target.className == 'edit'){
-		var editBox = "<input type='text' style='padding: 1px'>";
+		var editBox = "<input type='text' class='edit-content' style='padding: 1px 5px'>";
 		var doneButton = "<button class='done'><span class='fa fa-check'></span> Done</button>";
 		var editLi = $(e.target).parents('.task').children('.serial-no').next();
+		var paragraph = editLi.children('p');
 		var doneDesc = "<span class='fa fa-check'></span>";
 		var buttonSpan = $(e.target).children('span');
 
-		editLi.children('p').hide();
+		//get content of paragraph, hide paragraph and add edit box
+		var content = paragraph.text();
+		paragraph.hide();
 		editLi.prepend(editBox);
+		$('.edit-content').val(content);
 		$(e.target).parent().prepend(doneButton);
 		$(e.target).parent().children('.edit').remove();
-
 
 	}
 
 //event handler for done button
 if (e.target.className == 'done'){
-console.log('doneee');
+
 	var editLi = $(e.target).parents('.task').children('.serial-no').next();
 	var editInput = editLi.children("input[type='text']");
 	var editValue = editInput.val();
@@ -99,7 +108,33 @@ console.log('doneee');
 });//end taskBody event handler
 
 
+//clear button event handler
+clearTasks.on('click', function(e){
+	e.preventDefault();
+	var checkBoxes = document.querySelectorAll("input[type='checkbox']");
 
+
+	checkBoxes.forEach(function(checkbox){
+		if (checkbox.checked == true){
+			var tasks = $('.task');
+			var taskLength = $('.task').length;
+			var parent = $(checkbox).parents('.task');
+			var nextIndex = parent.index();
+
+			//update serial numbers and delete element
+			updateSN(tasks, nextIndex, taskLength);
+			parent.remove();
+
+		}
+	});//end forEach function
+});//end clear button event handler
+
+//fade animation
+manageTask.on('click', function(e){
+	if (e.target.className == 'check'){
+
+	}
+});
 
 
 
